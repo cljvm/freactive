@@ -304,7 +304,7 @@ map in velem."
 
 (defn- get-state-attr [state attr-str]
   (when-let [attrs (when state (.-attrs state))]
-    (aget attrs attr-str)))
+    (get attrs (keyword attr-str))))
 
 (defn- set-data-state!
   ([element state]
@@ -313,7 +313,7 @@ map in velem."
           state (when state (name state))]
       (when-not (identical? cur-state state)
         (do-set-data-state! element state)
-        (when-let [enter-transition (get-state-attr node-state (str ":state/on-" state))]
+        (when-let [enter-transition (get-state-attr node-state (str "state/on-" state))]
           (enter-transition element cur-state state))))))
 
 (def ^:private attr-setters
