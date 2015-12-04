@@ -143,7 +143,7 @@
                (fn [x cb]
                  (jitter ease-x nil)
                  (jitter ease-y (fn []
-                                  (put! action-ch :ready))))
+                                  (reset! graph-state :ready))))
 
                }
               (for [i (range n*)] (circle (nth lefts i) mouse-y))
